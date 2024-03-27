@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once 'db.php';
 
 $errors = "";
 $db = Database::getConnection();
@@ -8,47 +8,29 @@ if (isset($_POST['submit'])) {
     if (empty($_POST['task'])) {
         $errors = "You must fill in the task";
     } else {
-        $task = $_POST['task'];
-        try {
-            $stmt = $db->prepare("INSERT INTO tasks (task) VALUES (:task)");
-            $stmt->bindParam(':task', $task);
-            $stmt->execute();
+      $task = htmlspecialchars($_POST['task']);
+        if(Database::insertTask($task)) {
             header('Location: index.php');
             exit();
-        } catch (PDOException $exception) {
-            echo "Error: " . $exception->getMessage();
         }
     }
 }
 
 if (isset($_GET['del_task'])) {
-  $id = $_GET['del_task'];
-
-  try {
-      $stmt = $db->prepare("DELETE FROM tasks WHERE id = :id");
-      $stmt->bindParam(':id', $id);
-      $stmt->execute();
-      header('Location: index.php');
-      exit();
-  } catch (PDOException $exception) {
-      echo "Error: " . $exception->getMessage();
-  }
+    $id = $_GET['del_task'];
+    if(Database::deleteTask($id)) {
+        header('Location: index.php');
+        exit();
+    }
 }
 
 if (isset($_POST['edit_task']) && isset($_POST['task_id'])) {
-  $edited_task = $_POST['edit_task'];
+  $edited_task = htmlspecialchars($_POST['edit_task']);
   $task_id = $_POST['task_id'];
-
-  try {
-      $stmt = $db->prepare("UPDATE tasks SET task = :task WHERE id = :id");
-      $stmt->bindParam(':task', $edited_task);
-      $stmt->bindParam(':id', $task_id);
-      $stmt->execute();
-      header('Location: index.php');
-      exit();
-  } catch (PDOException $exception) {
-      echo "Error: " . $exception->getMessage();
-  }
+    if(Database::updateTask($edited_task, $task_id)) {
+        header('Location: index.php');
+        exit();
+    }
 }
 
 $page_title = "Welcome !";
@@ -59,7 +41,7 @@ include_once 'html_assets/header.php';
     <button type="submit" name="submit" id="add_btn" class="add_btn">Add a new task</button>
 </form>
 <table>
-   
+
         <thead>
                 <tr>
                         <th class="task">N</th>
