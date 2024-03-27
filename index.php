@@ -18,6 +18,7 @@ testDatabaseConnection();
 <html>
 <head>
         <title>ToDo List</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
         <div class="heading">
