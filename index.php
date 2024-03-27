@@ -51,29 +51,22 @@ if (isset($_POST['edit_task']) && isset($_POST['task_id'])) {
   }
 }
 
+$page_title = "Welcome !";
+include_once 'html_assets/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ToDo List</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-<div class="heading">
-    <h2 style="font-style: 'Hervetica';">ToDo List</h2>
-</div>
 <form method="post" action="index.php" class="input_form">
     <input type="text" name="task" class="task_input">
     <button type="submit" name="submit" id="add_btn" class="add_btn">Ajouter une tache</button>
 </form>
 <table>
-    <thead>
-    <tr>
-        <th>N</th>
-        <th>Taches</th>
-        <th style="width: 120px;">Actions</th>
-    </tr>
-    </thead>
+   
+        <thead>
+                <tr>
+                        <th class="task">N</th>
+                        <th>Taches</th>
+                        <th style="width: 120px;">Action</th>
+                </tr>
+        </thead>
 
     <tbody>
     <?php
@@ -96,10 +89,16 @@ if (isset($_POST['edit_task']) && isset($_POST['task_id'])) {
                 </td>
                 <td class="actions">
                     <?php if (isset($_GET['edit_task']) && $_GET['edit_task'] == $row['id']) { ?>
-                        <a href="index.php">Cancel</a>
+                        <span class="cancel">
+                            <a href="index.php">Cancel</a>
+                        </span>
                     <?php } else { ?>
-                        <a href="index.php?edit_task=<?php echo $row['id']; ?>">Edit</a>
-                        <a href="index.php?del_task=<?php echo $row['id']; ?>">Delete</a>
+                        <span class="edit">
+                            <a href="index.php?edit_task=<?php echo $row['id']; ?>">Edit</a>
+                        </span>
+                        <span class="delete">
+                            <a href="index.php?del_task=<?php echo $row['id']; ?>">Delete</a>
+                        </span>
                     <?php } ?>
                 </td>
             </tr>
