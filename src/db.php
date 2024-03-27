@@ -15,13 +15,13 @@ class Database {
         
         if ($conn === null) {
             self::$host = $env['DB_HOST'] ?: 'mysql';
-            self::$db_name = $env['DB_NAME'] ?: 'todolist';
+            self::$db_name = $env['DB_DATABASE'] ?: 'todolist';
             self::$port = $env['DB_PORT'] ?: '3306';
             self::$user = $env['DB_USER'] ?: 'user_todolist';
             self::$password = $env['DB_PASSWORD'] ?: 'pw_todolist';
             self::$charset = $env['DB_CHARSET'] ?: 'utf8mb4';
             self::$engine = $env['DB_ENGINE'] ?: 'mysql';
-            
+
             try {
                 $conn = new PDO(
                     self::$engine . ':host=' . self::$host . ';port=' . self::$port . ';dbname=' . self::$db_name . ';charset=' . self::$charset,
