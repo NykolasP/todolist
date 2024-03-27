@@ -56,14 +56,14 @@ include_once 'html_assets/header.php';
 ?>
 <form method="post" action="index.php" class="input_form">
     <input type="text" name="task" class="task_input">
-    <button type="submit" name="submit" id="add_btn" class="add_btn">Ajouter une tache</button>
+    <button type="submit" name="submit" id="add_btn" class="add_btn">Add a new task</button>
 </form>
 <table>
    
         <thead>
                 <tr>
                         <th class="task">N</th>
-                        <th>Taches</th>
+                        <th>Tasks</th>
                         <th style="width: 120px;">Action</th>
                 </tr>
         </thead>
