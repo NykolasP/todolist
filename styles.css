@@ -1,19 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  background-color: #FDFDFD;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+
+body a {
+  color: #286FB4;
+}
+
+nav a {
+  text-decoration: none;
+  color: #a2b1b4;
+  font-weight: bolder;
+}
 .heading{
-  width: 50%;
-  margin: 30px auto;
-  text-align: center;
-  color:  #6B8E23;
-  background: #FFF8DC;
-  border: 2px solid #6B8E23;
-  border-radius: 20px;
+  width: 100%;
+  position: absolute;
+  top: 0; right: 0;
+  color:  #DF4C73;
+  background: #FFFFFF;
+  border-bottom: 2px solid #F6F6F6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading * {
+  padding: 0.2rem 1.5rem 0.2rem 1rem ;
+}
+main {
+  margin-top: 10rem;
 }
 form {
   width: 50%;
   margin: 30px auto;
   border-radius: 5px;
   padding: 10px;
-  background: #FFF8DC;
-  border: 1px solid #6B8E23;
+  background: #edf4f9;
+  border: 1px solid #F6F6F6;
 }
 form p {
   color: red;
@@ -23,13 +49,13 @@ form p {
   width: 75%;
   height: 15px;
   padding: 10px;
-  border: 2px solid #6B8E23;
+  border: 2px solid #F6F6F6;
 }
 .add_btn {
   height: 39px;
-  background: #FFF8DC;
-  color:  #6B8E23;
-  border: 2px solid #6B8E23;
+  background: #d9e6ee;
+  color:  #6f8a8d;
+  border: 2px solid #F6F6F6;
   border-radius: 5px;
   padding: 5px 20px;
 }
@@ -46,7 +72,7 @@ tr {
 
 th {
   font-size: 19px;
-  color: #6B8E23;
+  color: #97bec4;
 }
 
 th, td{
@@ -63,13 +89,26 @@ tr:hover {
   text-align: left;
 }
 
-.delete{
+.actions {
   text-align: center;
 }
-.delete a{
+
+.delete, .edit, .cancel{
+  text-align: center;
+}
+.delete a, .edit a, .cancel a{
   color: white;
-  background: #a52a2a;
   padding: 1px 6px;
   border-radius: 3px;
   text-decoration: none;
+}
+
+.delete a {
+  background: #a52a2a;
+}
+.edit a {
+  background: #8db1b6;
+}
+.cancel a {
+  background: #a5592a;
 }
