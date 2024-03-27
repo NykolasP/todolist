@@ -4,6 +4,7 @@ body {
   background-color: #FDFDFD;
   box-sizing: border-box;
   font-family: Poppins;
+  color : #3e3e3e;
 }
 
 body a {
@@ -40,6 +41,8 @@ form {
   padding: 10px;
   background: #edf4f9;
   border: 1px solid #F6F6F6;
+  display: flex;
+  justify-content: space-evenly;
 }
 form p {
   color: red;
