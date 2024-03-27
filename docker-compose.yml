@@ -6,7 +6,7 @@ services:
       context: ./src
     volumes:
       - ./src:/var/www/html
-      - .env:/var/www/html/.env
+      - ./.env:/var/www/html/.env
     ports:
       - "9000:9000"
     depends_on:

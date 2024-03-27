@@ -21,7 +21,7 @@ class Database {
             self::$password = $env['DB_PASSWORD'] ?: 'pw_todolist';
             self::$charset = $env['DB_CHARSET'] ?: 'utf8mb4';
             self::$engine = $env['DB_ENGINE'] ?: 'mysql';
-
+            
             try {
                 $conn = new PDO(
                     self::$engine . ':host=' . self::$host . ';port=' . self::$port . ';dbname=' . self::$db_name . ';charset=' . self::$charset,
