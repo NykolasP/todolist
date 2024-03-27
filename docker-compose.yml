@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  php:
+    build: 
+      context: ./src
+    volumes:
+      - ./src:/var/www/html
+      - .env:/var/www/html/.env
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  mysql:
+    image: mysql:latest
+    command: mysqld --init-file="/docker-entrypoint-initdb.d/todolist.sql"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d/todolist.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+    links:
+      - php
+    depends_on:
+      - php
+    networks:
+      - backend
+
+volumes:
+  mysql_data:
+
+networks:
+  backend:
+    driver: bridge

@@ -1,18 +1,27 @@
 <?php
 
 class Database {
-    private static $host = 'localhost';
-    private static $db_name = 'todolist';
-    private static $port = '8889';
-    private static $user = 'root';
-    private static $password = 'root';
-    private static $charset = 'utf8mb4';
-    private static $engine = 'mysql';
+    private static $host;
+    private static $db_name;
+    private static $port;
+    private static $user;
+    private static $password;
+    private static $charset;
+    private static $engine;
 
     public static function getConnection() {
         static $conn;
-
+        $env = parse_ini_file('.env');
+        
         if ($conn === null) {
+            self::$host = $env['DB_HOST'] ?: 'mysql';
+            self::$db_name = $env['DB_NAME'] ?: 'todolist';
+            self::$port = $env['DB_PORT'] ?: '3306';
+            self::$user = $env['DB_USER'] ?: 'user_todolist';
+            self::$password = $env['DB_PASSWORD'] ?: 'pw_todolist';
+            self::$charset = $env['DB_CHARSET'] ?: 'utf8mb4';
+            self::$engine = $env['DB_ENGINE'] ?: 'mysql';
+            
             try {
                 $conn = new PDO(
                     self::$engine . ':host=' . self::$host . ';port=' . self::$port . ';dbname=' . self::$db_name . ';charset=' . self::$charset,
