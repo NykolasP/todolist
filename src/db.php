@@ -1,5 +1,9 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+use Symfony\Component\Dotenv\Dotenv;
 
+$dotenv = new Dotenv();
+$dotenv->load(__DIR__.'/.env');
 class Database {
     private static $host;
     private static $db_name;
@@ -11,16 +15,15 @@ class Database {
 
     public static function getConnection() {
         static $conn;
-        $env = parse_ini_file('.env');
         
         if ($conn === null) {
-            self::$host = $env['DB_HOST'] ?: 'mysql';
-            self::$db_name = $env['DB_DATABASE'] ?: 'todolist';
-            self::$port = $env['DB_PORT'] ?: '3306';
-            self::$user = $env['DB_USER'] ?: 'user_todolist';
-            self::$password = $env['DB_PASSWORD'] ?: 'pw_todolist';
-            self::$charset = $env['DB_CHARSET'] ?: 'utf8mb4';
-            self::$engine = $env['DB_ENGINE'] ?: 'mysql';
+            self::$host = $_ENV['DB_HOST'] ?? 'mysql';
+            self::$db_name = $_ENV['DB_DATABASE'] ?? 'todolist';
+            self::$port = $_ENV['DB_PORT'] ?? '3306';
+            self::$user = $_ENV['DB_USER'] ?? 'user_todolist';
+            self::$password = $_ENV['DB_PASSWORD'] ?? 'pw_todolist';
+            self::$charset = $_ENV['DB_CHARSET'] ?? 'utf8mb4';
+            self::$engine = $_ENV['DB_ENGINE'] ?? 'mysql';
             
             try {
                 $conn = new PDO(

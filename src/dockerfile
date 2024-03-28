@@ -1,6 +1,16 @@
-FROM php:8-fpm
+FROM php:8.1-fpm
 
-RUN apt-get update && apt-get upgrade -y
-COPY .env /var/www/html/.env
+ENV COMPOSER_ALLOW_SUPERUSER 1
+WORKDIR /var/www/html
+
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get install -y git unzip zip
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
+
+COPY .env .
+
 RUN docker-php-ext-install pdo pdo_mysql
-RUN composer install
+RUN chown -R www-data:www-data .

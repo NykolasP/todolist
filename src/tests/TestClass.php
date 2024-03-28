@@ -1,10 +1,20 @@
 <?php
-require_once 'db.php'; // Inclure la classe contenant les fonctions à tester
+require_once 'db.php';
 
 use PHPUnit\Framework\TestCase;
 
 class TestClass extends TestCase
-{
+{   
+
+    public function testGetConnection()
+    {   
+        // Appel de la fonction à tester    
+        $result = Database::getConnection();
+
+        // Vérification du résultat
+        $this->assertTrue($result); // La tâche devrait être insérée avec succès
+    }
+
     // Test de l'insertion de tâches
     public function testInsertTask()
     {

@@ -3,7 +3,9 @@ version: '3.8'
 services:
   php:
     build: 
-      context: ./src
+      context: .
+      dockerfile: ./src/dockerfile
+    command: composer install
     volumes:
       - ./src:/var/www/html
       - ./.env:/var/www/html/.env
