@@ -4,8 +4,7 @@ services:
   php:
     build: 
       context: .
-      dockerfile: ./src/dockerfile
-    command: composer install
+      dockerfile: src/dockerfile
     volumes:
       - ./src:/var/www/html
       - ./.env:/var/www/html/.env
