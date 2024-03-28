@@ -1,11 +1,9 @@
 FROM php:8.1-fpm-alpine
 
 RUN apk update && apk upgrade
-RUN apk add git unzip zip
+RUN apk add git unzip zip wget
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    && php -r "unlink('composer-setup.php');"
+RUN wget https://getcomposer.org/composer-stable.phar -O /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
 COPY .env /var/www/html/.env
 COPY src/composer.json /var/www/html/composer.json
@@ -13,4 +11,11 @@ COPY src/composer.json /var/www/html/composer.json
 RUN docker-php-ext-install pdo pdo_mysql
 RUN chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
-RUN composer install
+# Copie le script de démarrage personnalisé
+COPY start.sh /usr/local/bin/start.sh
+
+# Donne les permissions d'exécution au script de démarrage
+RUN chmod +x /usr/local/bin/start.sh
+
+# Démarre le conteneur en utilisant le script de démarrage personnalisé
+CMD ["/usr/local/bin/start.sh"]
