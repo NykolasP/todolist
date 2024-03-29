@@ -36,6 +36,9 @@ Créez un fichier .env à la racine du projet et dans le dossier "src", avec "lo
 - DB_CHARSET
 - DB_ENGINE
 
+# Lancement de la CI
+Dans le terminal, lancez la commande `docker-compose up`
+
 # Lancement des tests
 
 Accédez au dossier "src" et lancez "vendor/bin/codecept run".
