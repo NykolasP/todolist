@@ -7,7 +7,6 @@ services:
       dockerfile: src/dockerfile
     volumes:
       - ./src:/var/www/html
-      - ./.env:/var/www/html/.env
     ports:
       - "9000:9000"
     depends_on:
