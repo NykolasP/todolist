@@ -24,7 +24,7 @@ Exécutez "docker compose up -d" pour créer les conteneurs.
 
 ### Les fichiers .env
 
-Créez un fichier .env à la racine du projet et dans le dossier "src", avec "localhost" comme hôte dans le .env situé dans le dossier "src".
+Créez un fichier .env à la racine du projet et dans le dossier "src"
 
 ### Variables
 - MYSQL_ROOT_PASSWORD

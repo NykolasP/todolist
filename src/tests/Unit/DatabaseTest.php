@@ -6,7 +6,9 @@ use Codeception\Test\Unit;
 
 class DatabaseTest extends Unit
 {   
-
+    protected function _before(){
+        $_ENV['DB_HOST'] = "localhost";
+    }
     public function testConnection()
     {   
         $conn = Database::getConnection();
