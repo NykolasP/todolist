@@ -3,7 +3,7 @@ require_once 'db.php';
 
 use PHPUnit\Framework\TestCase;
 
-class TestDBClass extends TestCase
+class TestClass extends TestCase
 {   
 
     public function testGetConnection()
@@ -12,7 +12,7 @@ class TestDBClass extends TestCase
         $result = Database::getConnection();
 
         // Vérification du résultat
-        $this->assertNotNull($result); // Vérifie que la connexion n'est pas nulle
+        $this->assertTrue($result); // La tâche devrait être insérée avec succès
     }
 
     // Test de l'insertion de tâches
@@ -25,7 +25,7 @@ class TestDBClass extends TestCase
         $result = Database::insertTask($task);
 
         // Vérification du résultat
-        $this->assertTrue($result); // Vérifie que la tâche est insérée avec succès
+        $this->assertTrue($result); // La tâche devrait être insérée avec succès
     }
 
     // Test de la suppression de tâches
@@ -38,7 +38,7 @@ class TestDBClass extends TestCase
         $result = Database::deleteTask($taskId);
 
         // Vérification du résultat
-        $this->assertTrue($result); // Vérifie que la tâche est supprimée avec succès
+        $this->assertTrue($result); // La tâche devrait être supprimée avec succès
     }
 
     // Test de la mise à jour de tâches
@@ -52,6 +52,6 @@ class TestDBClass extends TestCase
         $result = Database::updateTask($editedTask, $taskId);
 
         // Vérification du résultat
-        $this->assertTrue($result); // Vérifie que la tâche est mise à jour avec succès
+        $this->assertTrue($result); // La tâche devrait être mise à jour avec succès
     }
 }

@@ -1,4 +1,9 @@
 <phpunit>
+  <testsuites>
+    <testsuite name="Mon application">
+        <directory>tests</directory>
+    </testsuite>
+  </testsuites>
   <php>
         <env name="DB_HOST" value="mysql" force="true"/>
         <env name="DB_DATABASE" value="todolist" force="true"/>
@@ -8,9 +13,4 @@
         <env name="DB_CHARSET" value="utf8mb4" force="true"/>
         <env name="DB_ENGINE" value="mysql" force="true"/>
   </php>
-  <testsuites>
-        <testsuite name="Mon application">
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
 </phpunit>
