@@ -6,15 +6,6 @@ use Codeception\Test\Unit;
 
 class DatabaseTest extends Unit
 {   
-    protected function _before(){
-        $_ENV['DB_HOST'] = 'localhost';
-        $_ENV['DB_DATABASE'] = 'todolist';
-        $_ENV['DB_PORT'] = '3306';
-        $_ENV['DB_USER'] = 'user-todolist';
-        $_ENV['DB_PASSWORD'] = 'pwd-todolist';
-        $_ENV['DB_CHARSET'] = 'utf8mb4';
-        $_ENV['DB_ENGINE'] = 'mysql';
-    }
 
     public function testConnection()
     {   
